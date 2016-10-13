@@ -1,0 +1,21 @@
+{
+  "name": "ecadastro",
+  "description": "Sistema de inscrição e usuários",
+  "main": "app/index.html",
+  "authors": [
+    "Darlan Damasio <darlan@damasio34.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "app-layout": "PolymerElements/app-layout#^0.10.4",
+    "material-design-lite": "^1.2.1"
+  }
+}

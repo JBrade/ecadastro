@@ -1,0 +1,15 @@
+{
+  "name": "ecadastro",
+  "version": "1.0.0",
+  "description": "Sistema de inscrição e usuários",
+  "main": "app/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/JBrade/ecadastro.git"
+  },
+  "author": "Darlan Damasio <darlan@damasio34.com>",
+  "license": "MIT"
+}

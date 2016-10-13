@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>ECadastro</title>
+
+    <link rel="stylesheet" href="../bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Faça sua inscrição</span>
+        </div>
+    </header>
+    <main class="mdl-layout__content mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset">
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="[A-Z,a-z]*" id="nome" />
+                    <label class="mdl-textfield__label" for="nome">Nome completo</label>
+                    <span class="mdl-textfield__error">Insira um nome válido.</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="email" id="email" />
+                    <label class="mdl-textfield__label" for="email">E-mail</label>
+                    <span class="mdl-textfield__error">Insira um e-mail válido.</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cpf">
+                    <label class="mdl-textfield__label" for="cpf">CPF</label>
+                    <span class="mdl-textfield__error">Insira um cpf válido.</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="[A-Z,a-z]*" id="igreja" />
+                    <label class="mdl-textfield__label" for="igreja">Nome da Igreja</label>
+                    <span class="mdl-textfield__error">Insira um nome válido.</span>
+                </div>
+                <div class="">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Button
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="../bower_components/material-design-lite/material.min.js"></script>
+</body>
+</html>
