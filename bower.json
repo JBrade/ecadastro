@@ -16,6 +16,9 @@
   ],
   "dependencies": {
     "app-layout": "PolymerElements/app-layout#^0.10.4",
-    "material-design-lite": "^1.2.1"
+    "material-design-lite": "^1.2.1",
+    "angular": "^1.5.8",
+    "angularfire": "^2.0.2",
+    "firebase": "^3.4.1"
   }
 }
