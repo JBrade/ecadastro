@@ -20,52 +20,30 @@ angular
     .controller('CadastroController', function($scope, $firebaseArray, $firebaseObject, $firebaseRef) {
         var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes'));
 
-        $scope.inscricao = {
-            Nome: 'Darlan Damasio',
-            Email: 'damasio34@gmail.com',
-            CPF: '05829757788',
-            Igreja: 'IBOE'
-        };
-
+        $scope.Limpar = limpar
         $scope.Salvar = salvar;
+        $scope.DesabilitaSalvar = desabilitaSalvar;
 
         // -------------------------------------------------------------------
 
-        function CPFJahCadastrado(a) {
-
-            var uid = "CPF: " + a.CPF;
-            var todosRef = $firebaseArray($firebaseRef.default.child('inscricoes').child(uid));
-            // var privateTodosRef = todosRef.orderByChild("CPF").equalTo(a.CPF);
-            var privateTodos;
-
-            todosRef.on("Value", function(response) {
-                console.log(response);
-              privateTodos = response.val();
-            });
-
-            // var inscricao = $firebaseObject($firebaseRef.default.child('inscricoes'))
-            //     .startAt(a.CPF)
-            //     .once('value', function(snap) {
-            //        console.log('accounts matching email address', snap.val())
-            //     });
-            //
-            //
-            // inscricoes.once('Value', function(snapshot) {
-            //     if (snapshot.hasChild({'CPF': inscricao.CPF })) {
-            //         alert('exists');
-            //     }
-            // });
-            // var existe = inscricoes.orderByChild("CPF").equalTo(inscricao.CPF);
-            // console.log(existe);
+        function desabilitaSalvar(inscricaoForm) {
+            return !inscricaoForm.$valid;
         };
-
+        function limpar(inscricaoForm) {
+            $scope.inscricao = null;
+            $scope.inscricao = angular.copy({});
+            $scope.inscricaoForm.$setPristine();
+        };
         function salvar(inscricao) {
-            if (CPFJahCadastrado(inscricao)) {
-
-            };
-
-            // inscricoes.$add(inscricao).then(function(result) {
-            //     console.log(result);
-            // });
+            var obj = $firebaseObject($firebaseRef.default.child('inscricoes'));
+            var ref = obj.$ref().orderByChild('CPF').equalTo(inscricao.CPF).once('value', function(snap) {
+                if (snap.val() === null) {
+                    inscricoes.$add(inscricao).then(function(result) {
+                        console.log('Usuário cadastrado com sucesso.');
+                    });
+                } else {
+                    console.log('CPF já cadastrado.')
+                };
+            });
         };
     });

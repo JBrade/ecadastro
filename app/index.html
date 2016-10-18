@@ -40,9 +40,14 @@
         <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset" ng-controller="CadastroController">
             <form name="inscricaoForm" novalidate>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" pattern="[a-zA-Z\s]*" id="nome" ng-model="inscricao.Nome" />
+                    <input class="mdl-textfield__input" type="text" pattern="[a-zA-Z\s]*" id="nome" ng-model="inscricao.Nome" ng-required="inscricao.Nome" />
                     <label class="mdl-textfield__label" for="nome">Nome completo</label>
                     <span class="mdl-textfield__error" ng-valid="">Insira um nome válido.</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="date" id="dataDeNascimento" ng-model="inscricao.DataDeNascimento" />
+                    <!-- <label class="mdl-textfield__label" for="dataDeNascimento">Data de nascimento</label> -->
+                    <span class="mdl-textfield__error">Insira uma data de nasciment válida.</span>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="email" id="email" ng-model="inscricao.Email" />
@@ -59,10 +64,14 @@
                     <label class="mdl-textfield__label" for="igreja">Nome da Igreja</label>
                     <span class="mdl-textfield__error">Insira um nome válido.</span>
                 </div>
-                <div class="">
+                <div>
                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        ng-click="Salvar(inscricao)" ng-disabled="inscricaoForm.$invalid">
+                        ng-click="Salvar(inscricao)">
                         Salvar
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        ng-click="Limpar(inscricaoForm)" type="reset">
+                        Limpar
                     </button>
                 </div>
             </form>
