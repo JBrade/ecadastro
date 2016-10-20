@@ -1,7 +1,32 @@
 'use strict'
 
 angular
-    .module('ecadastro', ['firebase'])
+    .module('ecadastro', ['firebase', 'ngRoute'])
+    .config(function($routeProvider) {
+
+		// If a route other than status is requested,
+		// go to the auth route
+		$routeProvider.otherwise('/cadastro');
+
+        $routeProvider
+
+            .when('/', {
+                templateUrl: 'views/cadastro.html',
+                controller: 'cadastroController'
+            })
+            .when('/login', {
+                templateUrl : 'views/cadastro.html',
+                controller: 'cadastroController'
+            })
+            .when('/registro', {
+                templateUrl : 'views/cadastro.html',
+                controller: 'cadastroController'
+            })
+            .when('/cadastros', {
+                templateUrl : 'views/cadastro.html',
+                controller: 'cadastroController'
+            });
+	})
     .config(function($firebaseRefProvider) {
         $firebaseRefProvider.registerUrl('https://ecadastro-b9df0.firebaseio.com');
     })
@@ -35,15 +60,18 @@ angular
             $scope.inscricaoForm.$setPristine();
         };
         function salvar(inscricao) {
-            var obj = $firebaseObject($firebaseRef.default.child('inscricoes'));
-            var ref = obj.$ref().orderByChild('CPF').equalTo(inscricao.CPF).once('value', function(snap) {
-                if (snap.val() === null) {
-                    inscricoes.$add(inscricao).then(function(result) {
-                        console.log('Usuário cadastrado com sucesso.');
-                    });
-                } else {
-                    console.log('CPF já cadastrado.')
-                };
-            });
+            $firebaseObject($firebaseRef.default.child('inscricoes'))
+                .$ref()
+                .orderByChild('CPF').equalTo(inscricao.CPF)
+                .once('value', function(snap) {
+                    if (snap.val() === null) {
+                        inscricoes.$add(inscricao).then(function(result) {
+                            console.log('Usuário cadastrado com sucesso.');
+                        });
+                    } else {
+                        console.log('CPF já cadastrado.')
+                    };
+                });
         };
+
     });
