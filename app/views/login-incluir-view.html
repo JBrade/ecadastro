@@ -1,0 +1,15 @@
+<md-content class="md-padding">
+    <md-input-container>
+        <label>User Name</label>
+        <input ng-model="auth.username" type="text">
+    </md-input-container>
+    <md-input-container>
+        <label>Email</label>
+        <input ng-model="auth.email" type="text">
+    </md-input-container>
+    <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="auth.password" type="text">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="auth.createUser()">Register</md-button>
+</md-content>
