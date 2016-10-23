@@ -9,8 +9,8 @@ angular
         $routeProvider
 
             .when('/', {
-                templateUrl: 'views/cadastro-incluir-view.html',
-                controller: 'CadastroIncluirController'
+                templateUrl: 'views/inscricao-incluir-view.html',
+                controller: 'InscricaoIncluirController'
             })
             .when('/login', {
                 templateUrl : 'views/login-view.html',
@@ -20,9 +20,9 @@ angular
                 templateUrl : 'views/login-incluir-view.html',
                 controller: 'LoginIncluirController'
             })
-            .when('/cadastro/listar', {
-                templateUrl : 'views/cadastro-listar-view.html',
-                controller: 'CadastroListarController'
+            .when('/inscricao/listar', {
+                templateUrl : 'views/inscricao-listar-view.html',
+                controller: 'InscricaoListarController'
             });
 	})
     .config(function($firebaseRefProvider) {
@@ -41,9 +41,8 @@ angular
         });
     })
     .factory('LoginService', LoginService)
-    .controller('CadastroIncluirController', function($scope, $mdDialog, $firebaseArray, $firebaseObject, $firebaseRef) {
+    .controller('InscricaoIncluirController', function($scope, $mdDialog, $firebaseArray, $firebaseObject, $firebaseRef) {
         var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes'));
-        var alerta = alerta;
 
         $scope.Limpar = limpar
         $scope.Cadastrar = cadastrar;
@@ -136,7 +135,7 @@ angular
         };
 
     })
-    .controller('CadastroListarController', function($scope, $firebaseArray, $firebaseRef) {
+    .controller('InscricaoListarController', function($scope, $firebaseArray, $firebaseRef) {
         var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes').orderByChild('Nome'));
 
         $scope.Inscricoes = inscricoes;
