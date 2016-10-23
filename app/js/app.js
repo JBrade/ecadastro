@@ -1,7 +1,7 @@
 'use strict'
 
 angular
-    .module('ecadastro', ['firebase', 'ngRoute', 'ngMaterial'])
+    .module('ecadastro', ['firebase', 'ngRoute', 'ngMaterial', 'ui.utils.masks'])
     .config(function($routeProvider) {
 
 		$routeProvider.otherwise('/');
@@ -40,14 +40,26 @@ angular
             return $delegate;
         });
     })
-    .controller('CadastroIncluirController', function($scope, $firebaseArray, $firebaseObject, $firebaseRef) {
+    .factory('LoginService', LoginService)
+    .controller('CadastroIncluirController', function($scope, $mdDialog, $firebaseArray, $firebaseObject, $firebaseRef) {
         var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes'));
+        var alerta = alerta;
 
         $scope.Limpar = limpar
-        $scope.Salvar = salvar;
+        $scope.Cadastrar = cadastrar;
         $scope.DesabilitaSalvar = desabilitaSalvar;
 
         // -------------------------------------------------------------------
+
+        function alerta(titulo, mensagem) {
+            var alert = $mdDialog.alert({
+                title: titulo,
+                textContent: mensagem,
+                ok: 'Ok'
+            });
+
+            $mdDialog.show(alert);
+        }
 
         function desabilitaSalvar(inscricaoForm) {
             return !inscricaoForm.$valid;
@@ -57,106 +69,79 @@ angular
             $scope.inscricao = angular.copy({});
             $scope.inscricaoForm.$setPristine();
         };
-        function salvar(inscricao) {
+        function cadastrar(inscricao) {
             $firebaseObject($firebaseRef.default.child('inscricoes'))
                 .$ref()
                 .orderByChild('CPF').equalTo(inscricao.CPF)
                 .once('value', function(snap) {
                     if (snap.val() === null) {
                         inscricoes.$add(inscricao).then(function(result) {
+                            alerta('Confirmação de cadastro', 'Cadastro foi efetuado com sucesso!');
                             console.log('Usuário cadastrado com sucesso.');
                         });
                     } else {
-                        console.log('CPF já cadastrado.')
+                        alerta('Cadastro não efetuado', 'CPF já cadastrado.');
                     };
                 });
         };
 
     })
-    .factory('LoginService', LoginService)
-    .controller('LoginController', function($scope, LoginService) {
-        var vm = this;
-        var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes'));
+    .controller('LoginController', function($scope, $firebaseRef, $firebaseAuth) {
+        var authObj = $firebaseAuth($firebaseRef.default.$ref);
 
-		vm.login = login;
+		$scope.Login = login;
 
         // -------------------------------------------------------------------
 
-        function login() {
-			LoginService.$authWithPassword(vm.Usuario).then(function(data) {
-				vm.usuario =  null;
-				console.log('logado');
-			}).catch(function(error) {
-				console.log(error);
-			});
+        function login(usuario) {
+            authObj.$signInWithEmailAndPassword(usuario.Email, usuario.Senha).then(function(userData) {
+                console.log("User " + userData.uid + " created successfully!");
+            });
+
+			// LoginService.$authWithPassword(vm.Usuario).then(function(data) {
+			// 	vm.usuario =  null;
+			// 	console.log('logado');
+			// }).catch(function(error) {
+			// 	console.log(error);
+			// });
 		};
 
     })
-    .controller('LoginIncluirController', function($scope, $firebaseArray, $firebaseObject, $firebaseRef) {
-        var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes'));
+    .controller('LoginIncluirController', function($scope, $firebaseRef, $firebaseAuth) {
+        var authObj = $firebaseAuth($firebaseRef.default.$ref);
 
-        $scope.Limpar = limpar
-        $scope.Salvar = salvar;
-        $scope.DesabilitaSalvar = desabilitaSalvar;
+        $scope.Incluir = incluir
 
         // -------------------------------------------------------------------
 
-        function desabilitaSalvar(inscricaoForm) {
-            return !inscricaoForm.$valid;
-        };
-        function limpar(inscricaoForm) {
-            $scope.inscricao = null;
-            $scope.inscricao = angular.copy({});
-            $scope.inscricaoForm.$setPristine();
-        };
-        function salvar(inscricao) {
-            $firebaseObject($firebaseRef.default.child('inscricoes'))
-                .$ref()
-                .orderByChild('CPF').equalTo(inscricao.CPF)
-                .once('value', function(snap) {
-                    if (snap.val() === null) {
-                        inscricoes.$add(inscricao).then(function(result) {
-                            console.log('Usuário cadastrado com sucesso.');
-                        });
-                    } else {
-                        console.log('CPF já cadastrado.')
-                    };
-                });
+        function incluir(usuario) {
+            authObj.$createUserWithEmailAndPassword(usuario.Email, usuario.Senha).then(function(userData) {
+                console.log("User " + userData.uid + " created successfully!");
+            });
+
+            // ref.$authWithPassword(usuario).then(function(user) {
+            //     alert(user);
+            // });
+
+
+            //   }, function(error) {
+            //     if (error = 'INVALID_EMAIL') {
+            //       console.log('email invalid or not signed up — trying to sign you up!');
+            //       $scope.signUp();
+            //     } else if (error = 'INVALID_PASSWORD') {
+            //       console.log('wrong password!');
+            //     } else {
+            //       console.log(error);
+            //     }
         };
 
     })
-    .controller('CadastroListarController', function($scope, $firebaseArray, $firebaseObject, $firebaseRef) {
-        var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes'));
+    .controller('CadastroListarController', function($scope, $firebaseArray, $firebaseRef) {
+        var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes').orderByChild('Nome'));
 
-        $scope.Limpar = limpar
-        $scope.Salvar = salvar;
-        $scope.DesabilitaSalvar = desabilitaSalvar;
+        $scope.Inscricoes = inscricoes;
 
         // -------------------------------------------------------------------
-
-        function desabilitaSalvar(inscricaoForm) {
-            return !inscricaoForm.$valid;
-        };
-        function limpar(inscricaoForm) {
-            $scope.inscricao = null;
-            $scope.inscricao = angular.copy({});
-            $scope.inscricaoForm.$setPristine();
-        };
-        function salvar(inscricao) {
-            $firebaseObject($firebaseRef.default.child('inscricoes'))
-                .$ref()
-                .orderByChild('CPF').equalTo(inscricao.CPF)
-                .once('value', function(snap) {
-                    if (snap.val() === null) {
-                        inscricoes.$add(inscricao).then(function(result) {
-                            console.log('Usuário cadastrado com sucesso.');
-                        });
-                    } else {
-                        console.log('CPF já cadastrado.')
-                    };
-                });
-        };
-
     });
 
     function LoginService($firebaseRef, $firebaseAuth) {

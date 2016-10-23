@@ -1,0 +1,44 @@
+<md-list>
+    <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <span>Inscritos</span>
+      </div>
+    </md-toolbar>
+    <md-list-item class="md-2-line" ng-repeat="inscricao in Inscricoes">
+        <!-- <md-checkbox ng-model="inscricao.done"></md-checkbox> -->
+        <div class="md-list-item-text">
+            <h3>{{inscricao.Nome}}</h3>
+            <p>{{inscricao.Email}}</p>
+        </div>
+    </md-list-item>
+</md-list>
+
+<!-- <table>
+    <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Idade</td>
+            <td>Email</td>
+            <td>CPF</td>
+            <td>Data de nascimento</td>
+            <td>Igreja</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="inscricao in Inscricoes">
+            <td>{{inscricao.Nome}}</td>
+            <td>{{inscricao.Idade}}</td>
+            <td>{{inscricao.Email}}</td>
+            <td>{{inscricao.CPF}}</td>
+            <td>{{inscricao.DataDeNascimento}}</td>
+            <td>{{inscricao.Igreja}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                Total de inscrições: {{Inscricoes.length + 1}}
+            </td>
+        </tr>
+    </tfoot>
+</table> -->

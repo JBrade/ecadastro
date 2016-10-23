@@ -1,15 +1,19 @@
-<md-content class="md-padding">
-    <md-input-container>
-        <label>User Name</label>
-        <input ng-model="auth.username" type="text">
-    </md-input-container>
-    <md-input-container>
-        <label>Email</label>
-        <input ng-model="auth.email" type="text">
-    </md-input-container>
-    <md-input-container>
-        <label>Password</label>
-        <input type="password" ng-model="auth.password" type="text">
-    </md-input-container>
-    <md-button class="md-raised md-primary" ng-click="auth.createUser()">Register</md-button>
-</md-content>
+<form name="loginForm" novalidate>
+    <md-content class="md-padding">
+        <div layout-gt-xs="row">
+            <md-input-container flex-gt-xs>
+                <label>E-mail</label>
+                <input type="email" id="email" ng-model="usuario.Email" />
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-input-container flex-gt-xs>
+                <label>Senha</label>
+                <input type="password" ng-model="usuario.Senha" />
+            </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+            <md-button class="md-raised md-warn" ng-click="Incluir(usuario)">Incluir</md-button>
+        </div>
+    </md-content>
+</form>

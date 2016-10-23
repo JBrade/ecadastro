@@ -18,8 +18,9 @@
     "angular": "^1.5.8",
     "angularfire": "^2.0.2",
     "firebase": "^3.4.1",
-    "angular-material": "#0.10.1",
-    "robotodraft": "^1.1.0"
+    "robotodraft": "^1.1.0",
+    "angular-input-masks": "^2.5.0",
+    "angular-material": "^1.1.1"
   },
   "resolutions": {
     "angular-material": "0.10.1"
