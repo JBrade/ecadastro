@@ -1,3 +1,4 @@
+<h3 align="center">Inscrição 1KG de alimento não perecível</h3>
 <form name="inscricaoForm" novalidate>
     <md-content class="md-padding">
         <div layout-gt-xs="row">
@@ -13,7 +14,7 @@
             </md-input-container>
         </div>
         <div layout-gt-xs="row">
-            <md-input-container flex-gt-xs>        
+            <md-input-container flex-gt-xs>
                 <label>Data de nascimento</label>
                 <input type="date" id="dataDeNascimento" ng-model="inscricao.DataDeNascimento" />
             </md-input-container>
@@ -30,6 +31,12 @@
                 <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="igreja" ng-model="inscricao.Igreja" />
             </md-input-container>
         </div>
+        <div layout-gt-xs="row">
+            <md-select placeholder="Selecione um workshop" ng-model="inscricao.workshop" flex-gt-xs>
+                <md-option value="Plenária 01">Plenária 01: sexualidade, namoro, noivado e casamento - 9h às 11:30h</md-option>
+                <md-option value="Plenária 02">Plenária 02: Evangelismo - 13:30h às 17h</md-option>
+            </md-select>
+      </div>
         <div layout-gt-xs="row">
             <md-button class="md-raised md-warn" ng-click="Cadastrar(inscricao)">Cadastrar</md-button>
         </div>
