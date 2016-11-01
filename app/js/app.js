@@ -84,57 +84,7 @@ angular
                 });
         };
 
-    })
-    .controller('LoginController', function($scope, $firebaseRef, $firebaseAuth) {
-        var authObj = $firebaseAuth($firebaseRef.default.$ref);
-
-		$scope.Login = login;
-
-        // -------------------------------------------------------------------
-
-        function login(usuario) {
-            authObj.$signInWithEmailAndPassword(usuario.Email, usuario.Senha).then(function(userData) {
-                console.log("User " + userData.uid + " created successfully!");
-            });
-
-			// LoginService.$authWithPassword(vm.Usuario).then(function(data) {
-			// 	vm.usuario =  null;
-			// 	console.log('logado');
-			// }).catch(function(error) {
-			// 	console.log(error);
-			// });
-		};
-
-    })
-    .controller('LoginIncluirController', function($scope, $firebaseRef, $firebaseAuth) {
-        var authObj = $firebaseAuth($firebaseRef.default.$ref);
-
-        $scope.Incluir = incluir
-
-        // -------------------------------------------------------------------
-
-        function incluir(usuario) {
-            authObj.$createUserWithEmailAndPassword(usuario.Email, usuario.Senha).then(function(userData) {
-                console.log("User " + userData.uid + " created successfully!");
-            });
-
-            // ref.$authWithPassword(usuario).then(function(user) {
-            //     alert(user);
-            // });
-
-
-            //   }, function(error) {
-            //     if (error = 'INVALID_EMAIL') {
-            //       console.log('email invalid or not signed up — trying to sign you up!');
-            //       $scope.signUp();
-            //     } else if (error = 'INVALID_PASSWORD') {
-            //       console.log('wrong password!');
-            //     } else {
-            //       console.log(error);
-            //     }
-        };
-
-    })
+    })        
     .controller('InscricaoListarController', function($scope, $firebaseArray, $firebaseRef) {
         var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes').orderByChild('Nome'));
 
