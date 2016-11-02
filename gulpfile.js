@@ -8,7 +8,6 @@
 	gulp.task('default', function() {
 		gulp.run('serve');
 	});
-
 	gulp.task('serve', function() {
 		gulp.watch('./app/*').on("change", browserSync.reload);
 
