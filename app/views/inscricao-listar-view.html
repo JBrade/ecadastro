@@ -1,48 +1,63 @@
-<div layout-gt-xs="row">
-    {{Email}}
-    <md-button class="md-raised md-warn" ng-click="Sair()">Sair</md-button>
+<div>
+    {{Email}}<md-button class="md-icon-button md-primary" ng-click="Sair()">
+        <md-icon md-svg-icon="img/icons/exit.svg" alt="sair"></md-icon>
+        <md-tooltip>Sair</md-tooltip>
+    </md-button>
 </div>
-<md-list>
+<!-- <md-list>
     <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
         <span>Inscritos</span>
       </div>
     </md-toolbar>
+
+    <md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
     <md-list-item class="md-2-line" ng-repeat="inscricao in Inscricoes">
-        <!-- <md-checkbox ng-model="inscricao.done"></md-checkbox> -->
+        <md-checkbox ng-model="inscricao.done"></md-checkbox>
         <div class="md-list-item-text">
-            <h3>{{inscricao.Nome}}</h3>
+            <h3>{{inscricao.Nome}} - {{inscricao.DataDeNascimento}}</h3>
             <p>{{inscricao.Email}}</p>
         </div>
     </md-list-item>
-</md-list>
+</md-list> -->
 
-<!-- <table>
+<md-toolbar layout="row" class="md-hue-3">
+  <div class="md-toolbar-tools">
+    <span>Inscritos</span>
+  </div>
+</md-toolbar>
+<table>
     <thead>
         <tr>
-            <td>Nome</td>
-            <td>Idade</td>
-            <td>Email</td>
-            <td>CPF</td>
-            <td>Data de nascimento</td>
-            <td>Igreja</td>
+            <th>Nome</th>
+            <th>Idade</th>
+            <!-- <th>Email</th> -->
+            <!-- <th>CPF</th> -->
+            <!-- <th>Dt nasc.</th> -->
+            <th>Igreja</th>
+            <th class="row-checkbox">Ple. 1</th>
+            <th class="row-checkbox">Ple. 2</th>
+            <th class="row-checkbox">Almoço</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="inscricao in Inscricoes">
             <td>{{inscricao.Nome}}</td>
-            <td>{{inscricao.Idade}}</td>
-            <td>{{inscricao.Email}}</td>
-            <td>{{inscricao.CPF}}</td>
-            <td>{{inscricao.DataDeNascimento}}</td>
+            <td>{{inscricao.DataDeNascimento | ageFilter }}</td>
+            <!-- <td>{{inscricao.Email}}</td> -->
+            <!-- <td>{{inscricao.CPF}}</td> -->
+            <!-- <td>{{inscricao.DataDeNascimento}}</td> -->
             <td>{{inscricao.Igreja}}</td>
+            <td class="row-checkbox"><md-checkbox ng-model="inscricao.Plenaria1" disabled></md-checkbox></td>
+            <td class="row-checkbox"><md-checkbox ng-model="inscricao.Plenaria2" disabled></md-checkbox></td>
+            <td class="row-checkbox"><md-checkbox ng-model="inscricao.Almoco" disabled></md-checkbox></td>
         </tr>
     </tbody>
-    <tfoot>
+    <thead>
         <tr>
-            <td colspan="5">
-                Total de inscrições: {{Inscricoes.length + 1}}
-            </td>
+            <th colspan="6">
+                Total de inscrições: {{Inscricoes.length}}
+            </th>
         </tr>
-    </tfoot>
-</table> -->
+    </thead>
+</table>

@@ -18,7 +18,7 @@
             function sair() {
                 LoginService.LogOut().then(function() {
                     console.log('deslogado!');
-                    $location.path('/');
+                    $location.path('/login');
                 });
             };
         };

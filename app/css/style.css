@@ -1,3 +1,35 @@
 body {
 	font-family: 'Exo', sans-serif;
 }
+table {
+  /*table-layout: fixed;*/
+  width: 100%;
+  white-space: nowrap;
+}
+table th {
+  text-align: left;
+}
+table td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+table th {
+  background: darkblue;
+  color: white;
+}
+table td,
+table th {
+  text-align: left;
+  padding: 5px 10px;
+}
+table tr:nth-child(even) {
+  background: lightblue;
+}
+
+
+/* Column widths are based on these cells */
+.row-checkbox {
+  width: 10%;
+  text-align: center;
+}
