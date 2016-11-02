@@ -43,14 +43,7 @@ angular
             return $delegate;
         });
     })
-    .factory('LoginService', LoginService)
-    .controller('InscricaoListarController', function($scope, $firebaseArray, $firebaseRef) {
-        var inscricoes = $firebaseArray($firebaseRef.default.child('inscricoes').orderByChild('Nome'));
-
-        $scope.Inscricoes = inscricoes;
-
-        // -------------------------------------------------------------------
-    });
+    .factory('LoginService', LoginService);
 
 
     function LoginService($firebaseRef, $firebaseAuth) {
