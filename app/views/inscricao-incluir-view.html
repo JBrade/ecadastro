@@ -26,17 +26,32 @@
             </md-input-container>
         </div>
         <div layout-gt-xs="row">
+            <md-checkbox ng-model="inscricao.Almoco" class="md-primary">
+                Almoço na igreja pelo valor de R$ 10,00 (<b>pago no dia</b>)
+            </md-checkbox>
+        </div>
+        <div layout-gt-xs="row">
+            <md-checkbox ng-model="inscricao.Plenaria1" class="md-primary">
+                Plenária 01: Sexualidade, namoro, noivado e casamento - <b>9h às 11:30h</b>
+            </md-checkbox>
+        </div>
+        <div layout-gt-xs="row">
+            <md-checkbox ng-model="inscricao.Plenaria2" class="md-primary">
+                Plenária 02: Evangelismo - <b>13:30h às 17h</b>
+            </md-checkbox>
+       </div>
+        <div layout-gt-xs="row">
             <md-input-container flex-gt-xs>
                 <label>Igreja</label>
                 <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="igreja" ng-model="inscricao.Igreja" />
             </md-input-container>
         </div>
-        <div layout-gt-xs="row">
+        <!-- <div layout-gt-xs="row">
             <md-select placeholder="Selecione um workshop" ng-model="inscricao.workshop" flex-gt-xs>
                 <md-option value="Plenária 01">Plenária 01: sexualidade, namoro, noivado e casamento - 9h às 11:30h</md-option>
                 <md-option value="Plenária 02">Plenária 02: Evangelismo - 13:30h às 17h</md-option>
             </md-select>
-      </div>
+      </div> -->
         <div layout-gt-xs="row">
             <md-button class="md-raised md-warn" ng-click="Cadastrar(inscricao)">Cadastrar</md-button>
         </div>
