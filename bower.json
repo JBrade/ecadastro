@@ -1,6 +1,6 @@
 {
   "name": "ecadastro",
-  "description": "Sistema de inscrição e usuários",
+  "description": "Sistema de inscrição de usuários",
   "main": "app/index.html",
   "authors": [
     "Darlan Damasio <darlan@damasio34.com>"
@@ -22,8 +22,5 @@
     "angular-input-masks": "^2.5.0",
     "angular-material": "^1.1.1",
     "angular-route": "^1.5.8"
-  },
-  "resolutions": {
-    "angular-material": "0.10.1"
   }
 }
