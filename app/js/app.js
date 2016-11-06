@@ -15,7 +15,8 @@
         })
         .filter('ageFilter', function() {
              function calculateAge(birthday) { // birthday is a date
-                 var day = moment(birthday);
+                 if (!birthday) return 'Não informado';
+                 var day = moment(birthday, 'DD/MM/YYYY');
                  return moment().diff(day, 'years');
              }
 

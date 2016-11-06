@@ -26,11 +26,17 @@
         }
 
         function cadastrar(inscricao) {
-            $firebaseObject($firebaseRef.default.child('inscricoes'))
+            var dataDeNascimento = $filter('date')(inscricao.DataDeNascimento, "dd/MM/yyyy")
+            var idade = $filter('ageFilter')(dataDeNascimento)
+            if (idade < 5) {
+                _alerta('Data de nascimento inválida.', 'Informe uma data de nascimento válida.');
+                return;
+            }
+            $firebaseObject($firebaseRef.default.child('inscricoes').child('CPF'))
                 .$ref()
-                .orderByChild('CPF').equalTo(inscricao.CPF)
+                .equalTo(inscricao.CPF)
                 .once('value', function(snap) {
-                    if (snap.val() === null) {
+                    if (!snap.exists()) {
                         inscricao.DataDeNascimento = $filter('date')(inscricao.DataDeNascimento, "dd/MM/yyyy");
                         inscricoes.$add(inscricao).then(function(result) {
                             _alerta('Confirmação de cadastro', 'Cadastro foi efetuado com sucesso!');

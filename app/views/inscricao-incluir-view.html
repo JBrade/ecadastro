@@ -1,52 +1,52 @@
 <h3 align="center">Inscrição 1KG de alimento não perecível</h3>
 <form name="inscricaoForm" novalidate>
     <md-content class="md-padding">
-        <div layout-gt-xs="row">
-            <md-input-container flex-gt-xs>
+        <div layout="row" layout-sm="column">
+            <md-input-container flex>
                 <label>Nome completo</label>
-                <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="nome" ng-model="inscricao.Nome" />
+                <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="nome" ng-model="inscricao.Nome" required />
             </md-input-container>
         </div>
-        <div layout-gt-xs="row">
-            <md-input-container flex-gt-xs>
+        <div layout="row" layout-sm="column">
+            <md-input-container flex>
                 <label>E-mail</label>
                 <input type="email" id="email" ng-model="inscricao.Email" />
             </md-input-container>
         </div>
-        <div layout-gt-xs="row">
-            <md-input-container flex-gt-xs>
+        <div layout="row" layout-sm="column">
+            <md-input-container flex>
                 <label>Data de nascimento</label>
-                <input type="date" id="dataDeNascimento" ng-model="inscricao.DataDeNascimento" />
+                <input type="date" id="dataDeNascimento" ng-model="inscricao.DataDeNascimento"/>
             </md-input-container>
         </div>
-        <div layout-gt-xs="row">
-            <md-input-container flex-gt-xs>
+        <div layout="row" layout-sm="column">
+            <md-input-container flex>
                 <label>CPF</label>
-                <input type="text" id="cpf" ng-model="inscricao.CPF" ui-br-cpf-mask />
+                <input type="text" id="cpf" ng-model="inscricao.CPF" ui-br-cpf-mask ng-required="true" />
             </md-input-container>
         </div>
-        <div layout-gt-xs="row">
+        <div layout="row" layout-sm="column">
             <md-checkbox ng-model="inscricao.Almoco" class="md-primary">
                 Almoço na igreja pelo valor de R$ 10,00 (<b>pago no dia</b>)
             </md-checkbox>
         </div>
-        <div layout-gt-xs="row">
+        <div layout="row" layout-sm="column">
             <md-checkbox ng-model="inscricao.Plenaria1" class="md-primary">
                 Plenária 01: Sexualidade, namoro, noivado e casamento - <b>9h às 11:30h</b>
             </md-checkbox>
         </div>
-        <div layout-gt-xs="row">
+        <div layout="row" layout-sm="column">
             <md-checkbox ng-model="inscricao.Plenaria2" class="md-primary">
                 Plenária 02: Evangelismo - <b>13:30h às 17h</b>
             </md-checkbox>
        </div>
-        <div layout-gt-xs="row">
-            <md-input-container flex-gt-xs>
+        <div layout="row" layout-sm="column">
+            <md-input-container flex>
                 <label>Igreja</label>
                 <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="igreja" ng-model="inscricao.Igreja" />
             </md-input-container>
         </div>
-        <div layout-gt-xs="row">
+        <div layout="row" layout-sm="column">
             <md-button class="md-raised md-warn" ng-click="Cadastrar(inscricao)">Cadastrar</md-button>
         </div>
     </md-content>
