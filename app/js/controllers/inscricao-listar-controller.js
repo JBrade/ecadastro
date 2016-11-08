@@ -13,7 +13,25 @@
             $scope.Sair = sair;
             $scope.Email = LoginService.UsuarioAutenticado() ? LoginService.GetUsuario().email : 'Usuário não autenticado';
 
+            _agrupaInscricoes();
+
             // -------------------------------------------------------------------
+
+            function _agrupaInscricoes() {
+                inscricoes.$loaded().then(function(snap){
+                    $scope.InscricoesAlmoco = snap.filter(function(item) {
+                        return item.Almoco === true;
+                    });
+
+                    $scope.InscricoesPlenaria1 = snap.filter(function(item) {
+                        return item.Plenaria1 === true;
+                    });
+
+                    $scope.InscricoesPlenaria2 = snap.filter(function(item) {
+                        return item.Plenaria2 === true;
+                    });
+                });
+            }
 
             function sair() {
                 LoginService.LogOut().then(function() {

@@ -4,7 +4,7 @@
         <div layout="row" layout-sm="column">
             <md-input-container flex>
                 <label>Nome completo</label>
-                <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="nome" ng-model="inscricao.Nome" required />
+                <input type="text" pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$" id="nome" ng-model="inscricao.Nome" />
             </md-input-container>
         </div>
         <div layout="row" layout-sm="column">
@@ -22,12 +22,12 @@
         <div layout="row" layout-sm="column">
             <md-input-container flex>
                 <label>CPF</label>
-                <input type="text" id="cpf" ng-model="inscricao.CPF" ui-br-cpf-mask ng-required="true" />
+                <input type="text" id="cpf" ng-model="inscricao.CPF" ui-br-cpf-mask />
             </md-input-container>
         </div>
         <div layout="row" layout-sm="column">
             <md-checkbox ng-model="inscricao.Almoco" class="md-primary">
-                Almoço na igreja pelo valor de R$ 10,00 (<b>pago no dia</b>)
+                Almoço na igreja pelo valor de R$ 10,00 (<b>pago no dia</b>) - <b>12/11/2016</b>
             </md-checkbox>
         </div>
         <div layout="row" layout-sm="column">
@@ -47,7 +47,7 @@
             </md-input-container>
         </div>
         <div layout="row" layout-sm="column">
-            <md-button class="md-raised md-warn" ng-click="Cadastrar(inscricao)">Cadastrar</md-button>
+            <md-button class="md-raised md-warn" ng-disabled="desabilita" ng-click="Cadastrar(inscricao)">Cadastrar</md-button>
         </div>
     </md-content>
 </form>

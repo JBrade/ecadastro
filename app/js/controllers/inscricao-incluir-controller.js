@@ -26,26 +26,29 @@
         }
 
         function cadastrar(inscricao) {
+            $scope.desabilita = true;
             var dataDeNascimento = $filter('date')(inscricao.DataDeNascimento, "dd/MM/yyyy")
             var idade = $filter('ageFilter')(dataDeNascimento)
-            if (idade < 5) {
-                _alerta('Data de nascimento inválida.', 'Informe uma data de nascimento válida.');
+            if (idade < 7) {
+                _alerta('Data de nascimento inválida.', 'Informe uma data de nascimento válida. Você tem mais de ' +
+                idade + ' anos. :)');
                 return;
-            }
-            $firebaseObject($firebaseRef.default.child('inscricoes').child('CPF'))
+            };
+            $firebaseObject($firebaseRef.default.child('inscricoes'))
                 .$ref()
+                .orderByChild('CPF')
                 .equalTo(inscricao.CPF)
                 .once('value', function(snap) {
                     if (!snap.exists()) {
                         inscricao.DataDeNascimento = $filter('date')(inscricao.DataDeNascimento, "dd/MM/yyyy");
                         inscricoes.$add(inscricao).then(function(result) {
                             _alerta('Confirmação de cadastro', 'Cadastro foi efetuado com sucesso!');
-                            $scope.inscricao = null;
-                            // console.log('Usuário cadastrado com sucesso.');
+                            $scope.inscricao = {};
+                            $scope.desabilita = false;
                         });
                     } else {
                         _alerta('Cadastro não efetuado', 'CPF já cadastrado.');
-                        $scope.inscricao = null;
+                        $scope.desabilita = false;
                     };
                 });
         };
